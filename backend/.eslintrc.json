@@ -1,0 +1,23 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "semi": 2,
+    "quotes": [2, "single"],
+    "no-var": 2,
+    "space-before-blocks": [2, "always"],
+    "func-style": [0, "expression"],
+    "no-undefined": 2,
+    "prefer-const": 0,
+    "comma-style": 2,
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "space-infix-ops": 2,
+    "eqeqeq": ["error", "always"]
+  }
+}
