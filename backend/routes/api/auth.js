@@ -28,7 +28,10 @@ router.post(
   '/',
   [
     check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists()
+    check('password', 'Password is required').exists(),
+    check('password', 'Password must be at least 6 characters').isLength({
+      min: 6
+    })
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -42,17 +45,31 @@ router.post(
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+        return res.status(400).json({
+          errors: [
+            {
+              value: email,
+              msg: 'Email does not exist',
+              param: 'email',
+              location: 'body'
+            }
+          ]
+        });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+        return res.status(400).json({
+          errors: [
+            {
+              value: password,
+              msg: 'Password is incorrect. Please try again.',
+              param: 'password',
+              location: 'body'
+            }
+          ]
+        });
       }
 
       const payload = {
