@@ -14,10 +14,10 @@ const Home = () => {
   const classes = useStyles();
   return (
     <Fragment>
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <Welcome />
       </Grid>
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <Button
           variant="contained"
           size="large"
