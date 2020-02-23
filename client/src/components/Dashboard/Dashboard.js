@@ -1,29 +1,16 @@
 import React, { Fragment } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { Grid } from '@material-ui/core';
 
-const Dashboard = ({ auth: { user, loading } }) => (
+import DashboardMain from './components/dashboardMain';
+
+const Dashboard = () => (
   <Fragment>
-    <Grid item md={1} />
-    <Grid item md={10}>
-      <Typography variant="h1" component="h1" align="center">
-        {!loading && user ? `Welcome, ${user.name}` : ''}
-      </Typography>
+    <Grid item md={3} />
+    <Grid item md={6}>
+      <DashboardMain></DashboardMain>
     </Grid>
-    <Grid item md={1} />
+    <Grid item md={3} />
   </Fragment>
 );
 
-Dashboard.propTypes = {
-  auth: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  {}
-)(Dashboard);
+export default Dashboard;
