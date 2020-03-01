@@ -100,7 +100,7 @@ const Login = ({ login, isAuthenticated, error }) => {
             </Grid>
             <Grid item>
               <Link href="/Auth/register" variant="body2">
-                Already have an account? Sign in
+                Don't have an account? Sign up here
               </Link>
             </Grid>
           </Grid>

@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer className={classes.margin}>
       <Typography variant="subtitle2" component="p" align="center">
-        Copyright &copy; 2019 MERN Starter
+        Copyright &copy; 2019-2020 MERN Starter
       </Typography>
     </footer>
   );

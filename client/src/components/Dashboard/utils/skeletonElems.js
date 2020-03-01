@@ -11,9 +11,9 @@ export const userAvatar = (loading, image) => {
   );
 };
 
-export const userAction = loading => {
+export const userAction = (loading, handleClick) => {
   return loading ? null : (
-    <IconButton aria-label="settings">
+    <IconButton aria-label="settings" onClick={handleClick}>
       <MoreVertIcon />
     </IconButton>
   );
