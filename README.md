@@ -70,21 +70,21 @@ However, if the instructions do not appear, i.e. you have set up the DB before w
 
 ```sh
 # Take this sample connection string
-mongodb+srv://new-user_22:<password>@cluster0-rx3wf.mongodb.net/test?retryWrites=true
+mongodb+srv://<username>:<password>@cluster0-rx3wf.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 #-----------------------------------------------------------
 # Substitute the following parts:
 #-----------------------------------------------------------
 
 # These two parts refer to your created DB user.
-> new-user_22
+> <username> (Automatically inputted into the string)
 > <password>
 
 # This refers to the cluster name.
-> cluster0
+> cluster0-rx3wf (Automatically inputted into the string)
 
 # This part refers to the name of the database you made.
-> /test
+> <dbname>
 ```
 
 ## Heroku deployment

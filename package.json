@@ -4,7 +4,8 @@
   "description": "A full-stack web app template, for utilising the MERN stack",
   "main": "index.js",
   "scripts": {
-    "full-install": "npm i && cd backend && npm i && cd .. && cd client && npm i && cd ..",
+    "full-install": "npm i && cd client && npm i && cd ..",
+    "full-update": "npm update && cd client && npm update && cd ..",
     "start": "npm run start --prefix backend",
     "backend": "npm run server --prefix backend",
     "client": "npm start --prefix client",
@@ -22,18 +23,18 @@
   },
   "homepage": "https://github.com/Titanium14/mern-starter#readme",
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "nodemon": "^2.0.3"
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.3.1",
+    "config": "^3.3.3",
     "express": "^4.17.1",
-    "express-validator": "^6.4.1",
-    "gravatar": "^1.8.0",
+    "express-validator": "^6.8.1",
+    "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.25.1",
-    "mongoose": "^5.9.11",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.8",
     "validator": "^11.1.0"
   }
 }

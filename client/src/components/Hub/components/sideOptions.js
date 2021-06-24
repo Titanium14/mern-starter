@@ -27,8 +27,8 @@ const SideOptions = ({
     drawerPos === 'first'
       ? objNavOptions(icons, list, hRefs)
       : isAuthenticated
-      ? objNavOptions(icons[0], list[0], hRefs[0])
-      : objNavOptions(icons[1], list[1], hRefs[1]);
+        ? objNavOptions(icons[0], list[0], hRefs[0])
+        : objNavOptions(icons[1], list[1], hRefs[1]);
   return (
     <Fragment>
       <Divider />
