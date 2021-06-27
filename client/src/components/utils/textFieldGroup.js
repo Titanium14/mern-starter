@@ -1,13 +1,6 @@
 import React from 'react';
 import { TextField, Grid, FormHelperText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-
-export const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1)
-  }
-}));
 
 const TextFieldGroup = ({
   id,
@@ -22,7 +15,7 @@ const TextFieldGroup = ({
   onChange,
   required,
   fullWidth,
-  autoFocus
+  autoFocus,
 }) => (
   <Grid item xs={12}>
     <TextField
@@ -56,13 +49,13 @@ TextFieldGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   fullWidth: PropTypes.bool,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
 };
 
 TextFieldGroup.defaultProps = {
   required: false,
   fullWidth: false,
-  autoFocus: false
+  autoFocus: false,
 };
 
 export default TextFieldGroup;
