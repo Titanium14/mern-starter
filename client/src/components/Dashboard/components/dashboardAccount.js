@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid } from '@material-ui/core';
+import { Box, Button, Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 import TextFieldGroup from '../../utils/textFieldGroup';
-import { useStyles } from '../utils/styles';
 
 import { updateUser } from '../../../redux/actions/auth';
 
@@ -14,15 +13,15 @@ const DashboardAccount = ({ auth: { user }, error, updateUser }) => {
     email: user.email,
     password: '',
     password2: '',
-    passConfirmed: ''
+    passConfirmed: '',
   });
 
   const { name, email, password, password2, passConfirmed } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
       setFormData({ ...formData, passConfirmed: 'Passwords do not match' });
@@ -32,10 +31,13 @@ const DashboardAccount = ({ auth: { user }, error, updateUser }) => {
     }
   };
 
-  const classes = useStyles();
-
   return (
-    <form className={classes.form} onSubmit={e => onSubmit(e)} noValidate>
+    <Box
+      component="form"
+      onSubmit={(e) => onSubmit(e)}
+      noValidate
+      sx={{ mt: 1 }}
+    >
       <Grid container spacing={2}>
         <TextFieldGroup
           id="name"
@@ -45,7 +47,7 @@ const DashboardAccount = ({ auth: { user }, error, updateUser }) => {
           variant="outlined"
           autoComplete="name"
           errorMsg={error.name}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
           fullWidth
           autoFocus
@@ -58,7 +60,7 @@ const DashboardAccount = ({ auth: { user }, error, updateUser }) => {
           variant="outlined"
           autoComplete="email"
           errorMsg={error.email}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
           fullWidth
         />
@@ -71,7 +73,7 @@ const DashboardAccount = ({ auth: { user }, error, updateUser }) => {
           type="password"
           autoComplete="current-password"
           errorMsg={error.password}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
           fullWidth
         />
@@ -84,33 +86,27 @@ const DashboardAccount = ({ auth: { user }, error, updateUser }) => {
           type="password"
           autoComplete="confirm-password"
           errorMsg={passConfirmed}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
           fullWidth
         />
       </Grid>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.submit}
-      >
+      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
         Update Account
       </Button>
-    </form>
+    </Box>
   );
 };
 
 DashboardAccount.propTypes = {
   updateUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired
+  error: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { updateUser })(DashboardAccount);

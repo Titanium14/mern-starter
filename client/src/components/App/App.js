@@ -24,7 +24,7 @@ const App = () => (
           <Route render={() => <LoadingSpinner />} />
         </Switch>
       </Grid>
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid item xs={12}>
         <Footer />
       </Grid>
     </Fragment>

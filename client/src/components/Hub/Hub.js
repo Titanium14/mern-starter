@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import clsx from 'clsx';
 
 import { useTheme } from '@material-ui/core/styles';
 import {
-  Drawer,
-  AppBar,
-  Toolbar,
+  Box,
   CssBaseline,
+  IconButton,
+  Toolbar,
   Typography,
-  IconButton
 } from '@material-ui/core';
 
 import { Provider } from 'react-redux';
@@ -18,7 +16,7 @@ import setAuthToken from '../../redux/utils/setAuthToken';
 
 import App from '../App/App';
 import SideOptions from './components/sideOptions';
-import { useStyles } from './utils/styles';
+import { DrawerHeader, AppBar, Drawer } from './utils/styles';
 import {
   MenuIcon,
   ChevronLeftIcon,
@@ -28,19 +26,14 @@ import {
   navRefs,
   condIcons,
   condList,
-  condRefs
+  condRefs,
 } from './utils/icons.js';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
+if (localStorage.token) setAuthToken(localStorage.token);
 
 const MiniDrawer = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+  useEffect(() => store.dispatch(loadUser()), []);
 
-  const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -49,23 +42,19 @@ const MiniDrawer = () => {
 
   return (
     <Provider store={store}>
-      <div className={classes.root}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open
-          })}
-        >
+        <AppBar position="fixed" open={open}>
           <Toolbar>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open
-              })}
+              sx={{
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -74,21 +63,8 @@ const MiniDrawer = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open
-            })
-          }}
-          open={open}
-        >
-          <div className={classes.toolbar}>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? (
                 <ChevronRightIcon />
@@ -96,7 +72,7 @@ const MiniDrawer = () => {
                 <ChevronLeftIcon />
               )}
             </IconButton>
-          </div>
+          </DrawerHeader>
           <SideOptions
             drawerPos="first"
             icons={navIcons}
@@ -110,11 +86,11 @@ const MiniDrawer = () => {
             hRefs={condRefs}
           />
         </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
           <App />
-        </main>
-      </div>
+        </Box>
+      </Box>
     </Provider>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Paper, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
-    padding: theme.spacing(8, 2)
-  }
-}));
+    padding: '64px 16px',
+  },
+});
 
 const Welcome = () => {
   const classes = useStyles();

@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Grid, Button } from '@material-ui/core';
 
 import Welcome from './components/welcome';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   margin: {
-    margin: theme.spacing(3, 0)
-  }
-}));
+    marginTop: '24px',
+  },
+});
 
 const Home = () => {
   const classes = useStyles();

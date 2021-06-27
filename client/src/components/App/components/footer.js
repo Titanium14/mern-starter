@@ -1,19 +1,19 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   margin: {
-    margin: theme.spacing(3, 0)
-  }
-}));
+    margin: '24px 0',
+  },
+});
 
 const Footer = () => {
   const classes = useStyles();
   return (
     <footer className={classes.margin}>
       <Typography variant="subtitle2" component="p" align="center">
-        Copyright &copy; 2019-2020 MERN Starter
+        {`Copyright © ${new Date().getFullYear()}`} MERN Starter
       </Typography>
     </footer>
   );

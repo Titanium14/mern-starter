@@ -3,54 +3,64 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Avatar,
+  Box,
   Button,
-  CssBaseline,
-  Link,
-  Grid,
-  Typography,
+  Checkbox,
   Container,
+  CssBaseline,
   FormControlLabel,
-  Checkbox
+  Grid,
+  Link,
+  Typography,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import { connect } from 'react-redux';
 import { login } from '../../../redux/actions/auth';
 
-import { useStyles } from '../utils/styles';
 import TextFieldGroup from '../../utils/textFieldGroup';
 
 const Login = ({ login, isAuthenticated, error }) => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const { email, password } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
-
-  const classes = useStyles();
 
   if (isAuthenticated) return <Redirect to="/Dashboard" />;
 
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} onSubmit={e => onSubmit(e)} noValidate>
+        <Box
+          component="form"
+          onSubmit={(e) => onSubmit(e)}
+          noValidate
+          sx={{ mt: 1 }}
+        >
           <Grid container spacing={2}>
             <TextFieldGroup
               id="email"
@@ -60,7 +70,7 @@ const Login = ({ login, isAuthenticated, error }) => {
               variant="outlined"
               autoComplete="email"
               errorMsg={error.email}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
               fullWidth
               autoFocus
@@ -74,7 +84,7 @@ const Login = ({ login, isAuthenticated, error }) => {
               type="password"
               autoComplete="current-password"
               errorMsg={error.password}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
               fullWidth
             />
@@ -87,12 +97,11 @@ const Login = ({ login, isAuthenticated, error }) => {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            sx={{ mt: 3, mb: 2 }}
           >
             Sign In
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
@@ -104,8 +113,8 @@ const Login = ({ login, isAuthenticated, error }) => {
               </Link>
             </Grid>
           </Grid>
-        </form>
-      </div>
+        </Box>
+      </Box>
     </Container>
   );
 };
@@ -113,12 +122,12 @@ const Login = ({ login, isAuthenticated, error }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  error: PropTypes.object.isRequired
+  error: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { login })(Login);
